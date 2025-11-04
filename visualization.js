@@ -18,6 +18,11 @@ d3.csv("gapminder.csv").then(function(dataset) {
   let maxValX = d3.max(dataset, d => d[param]);                                 // Skalierung von X Achse 
   let scaleX = d3.scaleLinear().domain([minValX,maxValX]).range([0, svgWidth]);     
 
+    
+
+
+
+
 
   // AXES 
 
@@ -42,7 +47,15 @@ let chart = svg.append("g")                                                     
 
 return scaleY(d[param2]) ; })   // cy aus CSV / Babies per Woman 
 .attr("r", "20" )               // 20 als Platzhalter, Verhältniss zur Population nicht codiert 
-.attr("fill", "red");
+.attr("fill", function(d){
+
+  if (d.world_4region == "europe") return "blue";
+  else if (d.world_4region == "asia") return "orange";
+  else if (d.world_4region == "africa") return "green";
+  else if (d.world_4region == "americas") return "red";
+  else return "black"; // falls fehler 
+ 
+});
 
 
   }, function(reason) {
