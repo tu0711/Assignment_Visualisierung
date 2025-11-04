@@ -20,10 +20,6 @@ d3.csv("gapminder.csv").then(function(dataset) {
 
     
 
-
-
-
-
   // AXES 
 
   const margin = {top: 20, right: 30, bottom: 30, left: 100}; 
@@ -35,11 +31,11 @@ let svg = d3.select("svg")
   .attr("class", "chart");
 
 let chart = svg.append("g")                                                       // aus Vorlesung    
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")")         // aus Vorlesung     
+.attr("transform", "translate(" + margin.left + "," + margin.top + ")")         // aus Vorlesung     
 .selectAll("circle")
 .data(dataset)
 .enter()
-.append("circle")
+.append("circle") 
 .attr("cx", function(d) {   
     return scaleX(d[param]);    // cx aus CSV / Average Income 
     })
@@ -56,6 +52,46 @@ return scaleY(d[param2]) ; })   // cy aus CSV / Babies per Woman
   else return "black"; // falls fehler 
  
 });
+
+
+
+
+svg.append("rect")
+  .attr("x", svgWidth - 180)
+  .attr("y", 20)
+  .attr("width", 160)
+  .attr("height", 160)
+  .attr("fill", "white")
+  .attr("stroke", "black")
+
+
+svg.append("text")
+  .attr("class", "legende")
+  .attr("x", svgWidth - 170)
+  .attr("y", 40)
+  .text("rot: Amerika");
+
+  svg.append("text")
+  .attr("class", "legende")
+  .attr("x", svgWidth - 170)
+  .attr("y", 60)
+  .text("grün: Afrika");
+
+  svg.append("text")
+  .attr("class", "legende")
+  .attr("x", svgWidth - 170)
+  .attr("y", 80)
+  .text("blau: Europa");
+
+  svg.append("text")
+  .attr("class", "legende")
+  .attr("x", svgWidth - 170)
+  .attr("y", 100)
+  .text("orange: Asien");
+
+
+
+
 
 
   }, function(reason) {

@@ -11,3 +11,10 @@ color: black;
   background-color: #C7D9D9;
 }
 
+
+
+.legend {
+  font-size: 12px;
+  font-family: sans-serif;
+  fill: black;
+}
